@@ -1,0 +1,23 @@
+---
+title: "advanced R"
+output: html_notebook
+---
+
+
+## Data Structure 
+### 關閉自動轉換為字串
+```{r}
+options(stringsAsFactors = F)
+```
+
+### data frame
+- the wrong way
+```{r}
+data.frame(x = 1:3, y = list(1:2, 1:3, 1:4)) # wrong way
+```
+
+- correcting it
+```{r}
+data.frame(x = 1:3, y = I(list(1:2, 1:3, 1:4))) # use `I()` 
+```
+

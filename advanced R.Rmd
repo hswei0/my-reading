@@ -21,3 +21,54 @@ data.frame(x = 1:3, y = list(1:2, 1:3, 1:4)) # wrong way
 data.frame(x = 1:3, y = I(list(1:2, 1:3, 1:4))) # use `I()` 
 ```
 
+## Subsetting
+### subsetting + assignment
+```{r}
+mtcars[] <- lapply(mtcars, as.integer) #存為df
+mtcars <- lapply(mtcars, as.integer) # 存為 list
+```
+
+### Lookup tables
+```{r}
+x <- c("m", "f", "u", "f", "f", "m", "m")
+lookup <- c(m = "Male", f = "Female", u = NA)
+lookup[x]
+```
+
+### Matching and merging by hand 
+```{r}
+grades <- c(1, 2, 2, 3, 1)
+
+info <- data.frame(
+  grade = 3:1,
+  desc = c("Excellent", "Good", "Poor"),
+  fail = c(F, F, T)
+)
+```
+```{r}
+# Using match
+id <- match(grades, info$grade)
+info[id, ]
+```
+
+```{r}
+# Using rownames
+rownames(info) <- info$grade
+info[as.character(grades), ]
+```
+### Random samples
+```{r}
+df <- data.frame(x = rep(1:3, each = 2), y = 6:1, z = letters[1:6])
+
+# Set seed for reproducibility
+set.seed(10)
+
+# Randomly reorder
+df[sample(nrow(df)), ]
+```
+
+### Selecting 
+```{r}
+
+```
+
